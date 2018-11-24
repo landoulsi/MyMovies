@@ -47,15 +47,13 @@ class MovieListState extends State<MovieList> {
   Widget buildList(AsyncSnapshot<ItemModel> snapshot) {
     return GridView.builder(
         itemCount: snapshot.data.results.length,
-        gridDelegate:
-        new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return GridTile(
             child: InkResponse(
               enableFeedback: true,
               child: Image.network(
-                'https://image.tmdb.org/t/p/w185${snapshot.data
-                    .results[index].poster_path}',
+                'https://dummyimage.com/300/0${index}f/f${index}f.png&text=$index',
                 fit: BoxFit.cover,
               ),
               onTap: () => openDetailPage(snapshot.data, index),
