@@ -1,8 +1,8 @@
-class TrailerModel {
+class MovieDetailsResponse {
   int _id;
   List<_Result> _results = [];
 
-  TrailerModel.fromJson(Map<String, dynamic> parsedJson) {
+  MovieDetailsResponse.fromJson(Map<String, dynamic> parsedJson) {
     _id = parsedJson['id'];
     List<_Result> temp = [];
     for (int i = 0; i < parsedJson['results'].length; i++) {
