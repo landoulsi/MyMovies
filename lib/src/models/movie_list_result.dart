@@ -16,7 +16,6 @@ class MovieListResult {
   bool adult;
   String overview;
   String release_date;
-  int age;
 
   MovieListResult(
       this.vote_count,
@@ -32,8 +31,7 @@ class MovieListResult {
       this.backdrop_path,
       this.adult,
       this.overview,
-      this.release_date,
-      this.age);
+      this.release_date);
 
   factory MovieListResult.fromJson(Map<String, dynamic> json) => _$MovieListResultFromJson(json);
 
@@ -61,8 +59,7 @@ MovieListResult _$MovieListResultFromJson(Map<String, dynamic> json) {
       json['backdrop_path'] as String,
       json['adult'] as bool,
       json['overview'] as String,
-      json['release_date'] as String,
-      json['age'] as int);
+      json['release_date'] as String);
 }
 
 Map<String, dynamic> _$MovieListResultToJson(MovieListResult instance) => <String, dynamic>{
@@ -79,6 +76,5 @@ Map<String, dynamic> _$MovieListResultToJson(MovieListResult instance) => <Strin
       'backdrop_path': instance.backdrop_path,
       'adult': instance.adult,
       'overview': instance.overview,
-      'release_date': instance.release_date,
-      'age': instance.age
+      'release_date': instance.release_date
     };
