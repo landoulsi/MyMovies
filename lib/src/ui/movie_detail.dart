@@ -73,8 +73,7 @@ class MovieDetailState extends State<MovieDetail> {
         top: false,
         bottom: false,
         child: NestedScrollView(
-          headerSliverBuilder: (BuildContext context,
-              bool innerBoxIsScrolled) {
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
                 expandedHeight: 200.0,
@@ -83,9 +82,9 @@ class MovieDetailState extends State<MovieDetail> {
                 elevation: 0.0,
                 flexibleSpace: FlexibleSpaceBar(
                     background: Image.network(
-                      "https://image.tmdb.org/t/p/w500$posterUrl",
-                      fit: BoxFit.cover,
-                    )),
+                  "https://image.tmdb.org/t/p/w500$posterUrl",
+                  fit: BoxFit.cover,
+                )),
               ),
             ];
           },
@@ -102,8 +101,7 @@ class MovieDetailState extends State<MovieDetail> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Container(margin: EdgeInsets.only(top: 8.0,
-                    bottom: 8.0)),
+                Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
                 Row(
                   children: <Widget>[
                     Icon(
@@ -111,8 +109,7 @@ class MovieDetailState extends State<MovieDetail> {
                       color: Colors.red,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 1.0,
-                          right: 1.0),
+                      margin: EdgeInsets.only(left: 1.0, right: 1.0),
                     ),
                     Text(
                       voteAverage,
@@ -121,8 +118,7 @@ class MovieDetailState extends State<MovieDetail> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 10.0,
-                          right: 10.0),
+                      margin: EdgeInsets.only(left: 10.0, right: 10.0),
                     ),
                     Text(
                       releaseDate,
@@ -132,11 +128,9 @@ class MovieDetailState extends State<MovieDetail> {
                     ),
                   ],
                 ),
-                Container(margin: EdgeInsets.only(top: 8.0,
-                    bottom: 8.0)),
+                Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
                 Text(description),
-                Container(margin: EdgeInsets.only(top: 8.0,
-                    bottom: 8.0)),
+                Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
                 Text(
                   "Trailer",
                   style: TextStyle(
@@ -144,17 +138,14 @@ class MovieDetailState extends State<MovieDetail> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Container(margin: EdgeInsets.only(top: 8.0,
-                    bottom: 8.0)),
+                Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
                 StreamBuilder(
                   stream: bloc.movieTrailers,
-                  builder:
-                      (context, AsyncSnapshot<Future<TrailerModel>> snapshot) {
+                  builder: (context, AsyncSnapshot<Future<TrailerModel>> snapshot) {
                     if (snapshot.hasData) {
                       return FutureBuilder(
                         future: snapshot.data,
-                        builder: (context,
-                            AsyncSnapshot<TrailerModel> itemSnapShot) {
+                        builder: (context, AsyncSnapshot<TrailerModel> itemSnapShot) {
                           if (itemSnapShot.hasData) {
                             if (itemSnapShot.data.results.length > 0)
                               return trailerLayout(itemSnapShot.data);
