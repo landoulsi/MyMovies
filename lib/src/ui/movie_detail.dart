@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import '../blocs/movie_detail_bloc_provider.dart';
-import '../models/trailer_model.dart';
+import '../models/movie_details_response.dart';
 
 class MovieDetail extends StatefulWidget {
   final posterUrl;
@@ -141,11 +141,11 @@ class MovieDetailState extends State<MovieDetail> {
                 Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
                 StreamBuilder(
                   stream: bloc.movieTrailers,
-                  builder: (context, AsyncSnapshot<Future<TrailerModel>> snapshot) {
+                  builder: (context, AsyncSnapshot<Future<MovieDetailsResponse>> snapshot) {
                     if (snapshot.hasData) {
                       return FutureBuilder(
                         future: snapshot.data,
-                        builder: (context, AsyncSnapshot<TrailerModel> itemSnapShot) {
+                        builder: (context, AsyncSnapshot<MovieDetailsResponse> itemSnapShot) {
                           if (itemSnapShot.hasData) {
                             if (itemSnapShot.data.results.length > 0)
                               return trailerLayout(itemSnapShot.data);
@@ -169,7 +169,7 @@ class MovieDetailState extends State<MovieDetail> {
     );
   }
 
-  Widget noTrailer(TrailerModel data) {
+  Widget noTrailer(MovieDetailsResponse data) {
     return Center(
       child: Container(
         child: Text("No trailer available"),
@@ -177,7 +177,7 @@ class MovieDetailState extends State<MovieDetail> {
     );
   }
 
-  Widget trailerLayout(TrailerModel data) {
+  Widget trailerLayout(MovieDetailsResponse data) {
     if (data.results.length > 1) {
       return Row(
         children: <Widget>[
@@ -194,7 +194,7 @@ class MovieDetailState extends State<MovieDetail> {
     }
   }
 
-  trailerItem(TrailerModel data, int index) {
+  trailerItem(MovieDetailsResponse data, int index) {
     return Expanded(
       child: Column(
         children: <Widget>[

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/item_model.dart';
+import '../models/movie_list_response.dart';
 import '../blocs/movies_bloc.dart';
 import 'movie_detail.dart';
 import '../blocs/movie_detail_bloc_provider.dart';
@@ -32,7 +32,7 @@ class MovieListState extends State<MovieList> {
       ),
       body: StreamBuilder(
         stream: bloc.allMovies,
-        builder: (context, AsyncSnapshot<ItemModel> snapshot) {
+        builder: (context, AsyncSnapshot<MovieListResponse> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
           } else if (snapshot.hasError) {
@@ -44,7 +44,7 @@ class MovieListState extends State<MovieList> {
     );
   }
 
-  Widget buildList(AsyncSnapshot<ItemModel> snapshot) {
+  Widget buildList(AsyncSnapshot<MovieListResponse> snapshot) {
     return GridView.builder(
         itemCount: snapshot.data.results.length,
         gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -62,7 +62,7 @@ class MovieListState extends State<MovieList> {
         });
   }
 
-  openDetailPage(ItemModel data, int index) {
+  openDetailPage(MovieListResponse data, int index) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
